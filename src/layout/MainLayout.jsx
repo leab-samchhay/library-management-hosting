@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { logout } from "@/store/authSlice";
 import { AnimatePresence, motion } from "framer-motion";
 import logo from '../assets/logolibrary.png';
+import { Spinner } from '@/components/ui/spinner';
 import { 
   IoMenuOutline, 
   IoCloseOutline, 
@@ -39,6 +40,7 @@ import { logoutUser } from "@/service/auth";
 
 const MainLayout = () => {
     const { token, user } = useSelector(state => state.auth);
+    const [loading,setLoading] = useState(false);
     
     const navGroups = [
         {
@@ -96,12 +98,14 @@ const MainLayout = () => {
 
     const handleLogout = async () => {
         try {
+            setLoading(true);
             await logoutUser();
         } catch (error) {
             console.error(error);
         } finally {
             dispatch(logout());
             navigate('/login');
+            setLoading(false);
         }
     };
 
@@ -337,6 +341,7 @@ const MainLayout = () => {
                                     className="ml-2 p-2 text-rose-500 hover:bg-rose-100 cursor-pointer dark:hover:bg-rose-500/10 rounded-xl transition-all"
                                 >
                                     <FaSignOutAlt size={18} />
+                                    {loading && <Spinner />}
                                 </button>
                             </div>
                         </div>

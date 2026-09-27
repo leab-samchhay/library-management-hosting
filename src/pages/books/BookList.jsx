@@ -192,8 +192,22 @@ const BookList = () => {
                                     <TableCell>{index + 1}</TableCell>
                                     <TableCell>
                                         {item.image && item.image !== "null" ? (
+                                            // <img 
+                                            //     src={item.image.startsWith('http') ? item.image : `http://127.0.0.1:8000/storage/${item.image}`} 
+                                            //     alt={item.title || "book"} 
+                                            //     className="h-12 w-12 object-cover rounded bg-gray-100 border" 
+                                            //     onError={(e) => { 
+                                            //         e.target.onerror = null; 
+                                            //         e.target.src = "https://placehold.co/100x100?text=No+Img"; 
+                                            //     }} 
+                                            // />
+
                                             <img 
-                                                src={item.image.startsWith('http') ? item.image : `http://127.0.0.1:8000/storage/${item.image}`} 
+                                                src={
+                                                    item.image?.startsWith('http') 
+                                                        ? item.image 
+                                                        : `https://library-management-bk8f.onrender.com/${item.image.startsWith('storage/') ? item.image : 'storage/' + item.image}`
+                                                } 
                                                 alt={item.title || "book"} 
                                                 className="h-12 w-12 object-cover rounded bg-gray-100 border" 
                                                 onError={(e) => { 
