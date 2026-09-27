@@ -340,8 +340,8 @@ const MainLayout = () => {
                                     title="Logout"
                                     className="ml-2 p-2 text-rose-500 hover:bg-rose-100 cursor-pointer dark:hover:bg-rose-500/10 rounded-xl transition-all"
                                 >
-                                    <FaSignOutAlt size={18} />
-                                    {loading && <Spinner />}
+                                    
+                                   {loading ? <Spinner /> : <FaSignOutAlt size={18} />}
                                 </button>
                             </div>
                         </div>
